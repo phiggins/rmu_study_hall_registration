@@ -1,0 +1,23 @@
+#registration_form
+  %h1 RMU Study Hall
+  .intro From 2011.2.14 - 2011.2.18, several RMU alumni will be available to mentor beginner level Ruby developers. Please fill out this form if you'd like to reserve a session.
+  
+  .requirements All fields are required.
+
+  %form{:method => "post", :action =>"create"}
+    .field
+      .label Name
+      %input{:type => "text", :name => "name"}
+    .field
+      .label Email
+      %input{:type => "text", :name => "email"}
+    .field
+      .label When are you available for a meeting?
+      .hint List all times in UTC for the 2011.02.14 to 2011.02.18 period.
+      %textarea{:name => "availability"}
+    .field
+      .label What would you like to discuss during your session? 
+      .hint Make sure to come prepared with one or more projects to discuss during your session. If you don't have a project, consider attempting a Ruby Quiz or Project Euler problem and then sharing that with your mentor.
+      %textarea{:name => "subject"}
+    .field
+      %input{:type => "submit", :value => "Submit"}
