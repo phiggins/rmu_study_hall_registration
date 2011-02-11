@@ -44,6 +44,9 @@ class StudyHall < Sinatra::Base
 
   get '/admin' do
     protected!
+
+    @registrations = Registration.all
+    haml :index
   end
 
   get '/style.css' do

@@ -1,0 +1,19 @@
+#content
+  %h1 RMU Study Hall Registration List
+
+  - @registrations.each do |reg|
+    %p
+      name:
+      = reg.name
+
+    %p
+      email:
+      = reg.email
+
+    %p
+      availability:
+      = reg.availability
+
+    %p
+      subject:
+      = reg.subject

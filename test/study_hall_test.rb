@@ -85,9 +85,25 @@ class StudyHallTest < Test::Unit::TestCase
     assert_equal 401, last_response.status
   end
 
-  def test_with_proper_credentials
+  def test_admin_lists_registrations_with_proper_credentials
+    2.times do |n|
+      params = @create_params.dup
+      params.each_key do |key|
+        params[key] = "#{params[key]}#{n}"
+      end
+
+      Registration.create! params
+    end
+    
     authorize ADMIN_USER, ADMIN_PASS
     get '/admin'
     assert_equal 200, last_response.status
+
+    Registration.all.each do |reg|
+      @create_params.keys.each do |attr|
+        assert last_response.body.include?(reg[attr]),
+          "Response body did not include #{attr} for #{reg.inspect}"
+      end
+    end
   end
 end
