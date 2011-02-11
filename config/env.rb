@@ -11,7 +11,7 @@ require 'active_record'
 
 require 'logger'
 
-ActiveRecord::Base.logger = Logger.new($stdout)
+ActiveRecord::Base.logger = Logger.new(nil)
 ActiveRecord::Base.establish_connection(  
   :adapter  => "sqlite3",  
   :database => "study_hall_#{RACK_ENV}.sqlite3")  
