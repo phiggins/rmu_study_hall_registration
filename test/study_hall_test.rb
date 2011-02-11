@@ -73,4 +73,21 @@ class StudyHallTest < Test::Unit::TestCase
     assert last_response.redirect?
     assert_equal Registration.count, reg_count
   end
+
+  def test_admin_fails_without_authentication
+    get '/admin'
+    assert_equal 401, last_response.status
+  end
+
+  def test_admin_fails_with_bad_credentials
+    authorize 'bad', 'boy'
+    get '/admin'
+    assert_equal 401, last_response.status
+  end
+
+  def test_with_proper_credentials
+    authorize ADMIN_USER, ADMIN_PASS
+    get '/admin'
+    assert_equal 200, last_response.status
+  end
 end

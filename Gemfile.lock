@@ -1,5 +1,5 @@
 GEM
-  remote: http://gemcutter.org/
+  remote: http://rubygems.org/
   specs:
     activemodel (3.0.4)
       activesupport (= 3.0.4)
