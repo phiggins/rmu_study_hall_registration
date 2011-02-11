@@ -14,10 +14,14 @@ class StudyHall < Sinatra::Base
     @reg = Registration.new(params)
 
     if @reg.save
-      haml :success
+      haml :create
     else
       haml :new
     end
+  end
+
+  get '/create' do
+    redirect '/new'
   end
 
   get '/style.css' do
