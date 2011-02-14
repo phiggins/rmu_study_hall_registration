@@ -49,6 +49,18 @@ class StudyHall < Sinatra::Base
     haml :index
   end
 
+  post "/update/:id" do |id|
+    protected!
+
+    reg = Registration.find(id)
+    reg.mentor          = params[:mentor]
+    reg.appointment_at  = params[:appointment_at]
+    reg.scheduled       = true
+    reg.save!
+
+    redirect "/admin"
+  end
+
   get '/style.css' do
     sass :style
   end

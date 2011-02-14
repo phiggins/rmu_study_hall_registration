@@ -2,18 +2,21 @@
   %h1 RMU Study Hall Registration List
 
   - @registrations.each do |reg|
-    %p
-      name:
-      = reg.name
+    %form{:method => "post", :action => "/update/#{reg.id}"}
+      .field
+        .label= "##{reg.id} #{reg.name} (#{reg.email})"
+        .label= "Schduled: #{reg.scheduled ? "Yes" : "No"}"
+        .label Availability:
+        = reg.availability
+        .label Subject:
+        = reg.subject
 
-    %p
-      email:
-      = reg.email
+        .label Mentor
+        %input{:type => "text", :name => "mentor", :value => reg.mentor}
 
-    %p
-      availability:
-      = reg.availability
-
-    %p
-      subject:
-      = reg.subject
+        .label Appointment time
+        .hint Eg, "Dec 1 16:00 UTC"
+        %input{:type => "text", :name => "appointment_at", :value => reg.appointment_at}
+        
+        %p 
+          %input{:type => "submit", :value => "Submit"}

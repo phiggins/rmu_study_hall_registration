@@ -1,4 +1,6 @@
-RACK_ENV = ENV["RACK_ENV"] || "development"
+unless defined?(RACK_ENV)
+  RACK_ENV = ENV["RACK_ENV"] || "development"
+end
 
 APP_ROOT = File.expand_path(File.join(File.dirname(__FILE__), ".."))
 
@@ -11,6 +13,7 @@ require 'active_record'
 
 require 'logger'
 
+ActiveRecord::Base.default_timezone = :utc
 ActiveRecord::Base.logger = Logger.new(nil)
 ActiveRecord::Base.establish_connection(  
   :adapter  => "sqlite3",  
