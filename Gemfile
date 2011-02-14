@@ -7,4 +7,5 @@ gem "sqlite3"
 
 group :test do
   gem "rack-test"
+  gem "contest"
 end
